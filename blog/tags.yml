@@ -1,0 +1,14 @@
+zocah:
+  label: zocah
+  permalink: /zocah
+  description: Zocah tag description
+
+devops:
+  label: devops
+  permalink: /devops
+  description: Devops tag description
+
+productivity:
+  label: productivity
+  permalink: /productivity
+  description: Productivity tag description

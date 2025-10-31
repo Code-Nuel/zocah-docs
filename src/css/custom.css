@@ -1,0 +1,414 @@
+/* src/css/custom.css
+   Global theme variables + strict content colors for light & dark
+   - Light background uses #cfd4db (requested)
+   - Links use #7C3AED across site
+   - Dark mode headings forced white
+*/
+
+:root {
+  --ifm-color-primary: #7C3AED;    /* purple accent (links) */
+  --ifm-color-primary-700: #5B21B6;
+  --content-text-color: #0f1724;  /* dark text for light mode */
+  --content-muted-color: #6b7280;
+  --content-heading-color: #2a0f27ff;
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  --ifm-radius: 12px;
+  --content-max-width: 860px;
+
+  /* Light theme page background you requested */
+  --ifm-site-background: rgba(207,212,219,1); /* #cfd4dbff */
+}
+
+/* Base */
+html, body, #__docusaurus { height: 100%; }
+body {
+  font-family: var(--ifm-font-family-base);
+  color: var(--content-text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--ifm-site-background);
+}
+
+/* center wrapper */
+.main-wrapper {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* DOCS / POSTS: width & typography */
+.theme-doc-markdown, .docItemWrapper, .markdown, .post .markdown {
+  max-width: var(--content-max-width);
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--content-text-color);
+}
+
+/* Light-mode headings (dark) */
+.theme-doc-markdown h1, .docItem .markdown h1, .post .markdown h1 {
+  color: var(--content-heading-color) !important;
+  font-weight: 800;
+  margin-top: 0;
+}
+.theme-doc-markdown h2, .docItem .markdown h2, .post .markdown h2 {
+  color: var(--content-heading-color) !important;
+  font-weight: 700;
+}
+.theme-doc-markdown h3, .docItem .markdown h3, .post .markdown h3 {
+  color: var(--content-heading-color) !important;
+  font-weight: 600;
+}
+
+/* Blog cards (light) */
+.blog-list .card, .postItem {
+  border-radius: var(--ifm-radius);
+  padding: 16px;
+  box-shadow: 0 10px 28px rgba(2,6,23,0.06);
+  background: #fff;
+  margin-bottom: 16px;
+}
+.blog-list .card .card__title, .postItem .postItemContent h2 {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 700;
+}
+
+/* Blog post page title (light) */
+.post .markdown h1 { color: var(--content-heading-color) !important; }
+
+/* Code blocks (light): dark code bg, light text */
+.theme-code-block pre, pre.prism {
+  border-radius: 8px;
+  padding: 12px;
+  background: #0f1724;
+  color: #e6eef8;
+  overflow-x: auto;
+  font-size: 0.95rem;
+}
+
+/* Mobile: wrap code blocks */
+@media (max-width: 880px) {
+  .theme-code-block pre, pre.prism, code, pre {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-x: hidden !important;
+    font-size: 0.92rem;
+  }
+}
+
+/* Images */
+.markdown img { max-width: 100%; height: auto; border-radius: 8px; }
+
+/* Sidebar on mobile hidden (Docusaurus drawer remains) */
+.docsSidebarContainer { padding-left:8px; padding-right:8px; }
+@media (max-width:880px) { .sidebar { display:none; } }
+
+/* Buttons */
+.btn, button, a.button { border-radius: 10px; font-weight:700; }
+
+/* Prevent horizontal overflow */
+* { box-sizing: border-box; }
+
+/* -----------------------------
+   LINK COLOR: enforce purple accent site-wide
+   ----------------------------- */
+a, a:visited, a:hover, a:active {
+  color: var(--ifm-color-primary) !important;
+}
+
+/* also ensure inline code links follow same color */
+.markdown a, .theme-doc-markdown a { color: var(--ifm-color-primary) !important; }
+
+/* ========================
+   DARK MODE — strict white-on-dark content
+   Targets both .theme-dark and html[data-theme="dark"]
+   ======================== */
+.theme-dark, html[data-theme="dark"] {
+  /* dark-mode sensible CSS variables */
+  --dark-bg: #071124;
+  --dark-surface: #081226;
+  --dark-strong: #e6eef8;
+  --dark-muted: rgba(255,255,255,0.72);
+}
+
+/* Page background & base text color */
+.theme-dark body,
+html[data-theme="dark"] body,
+.theme-dark #__docusaurus,
+html[data-theme="dark"] #__docusaurus {
+  background-color: var(--dark-bg) !important;
+  color: var(--dark-strong) !important;
+}
+
+/* Main wrapper / content area */
+.theme-dark .main-wrapper,
+html[data-theme="dark"] .main-wrapper {
+  background: transparent !important;
+}
+
+/* Navbar & footer: dark surfaces */
+.theme-dark .navbar, html[data-theme="dark"] .navbar,
+.theme-dark .footer, html[data-theme="dark"] .footer {
+  background: linear-gradient(180deg, #061025, #071226) !important;
+  color: var(--dark-strong) !important;
+}
+
+/* Hero overlay stronger in dark mode */
+.theme-dark .heroMedia::after,
+html[data-theme="dark"] .heroMedia::after {
+  background: linear-gradient(180deg, rgba(2,6,23,0.5), rgba(2,6,23,0.6)) !important;
+}
+
+/* HERO card in dark mode */
+.theme-dark .heroText,
+html[data-theme="dark"] .heroText {
+  background: linear-gradient(180deg, rgba(8,14,22,0.96), rgba(8,14,22,0.92)) !important;
+  color: var(--dark-strong) !important;
+  box-shadow: 0 18px 44px rgba(2,6,23,0.30) !important;
+}
+
+/* Docs & blog article content: white text on dark bg */
+.theme-dark .theme-doc-markdown,
+html[data-theme="dark"] .theme-doc-markdown,
+.theme-dark .docItemWrapper,
+html[data-theme="dark"] .docItemWrapper,
+.theme-dark .markdown,
+html[data-theme="dark"] .markdown,
+.theme-dark .post .markdown,
+html[data-theme="dark"] .post .markdown {
+  color: var(--dark-strong) !important;
+  background: transparent !important;
+}
+
+/* Headings in dark mode: make all H1-H4 white and high contrast */
+.theme-dark .theme-doc-markdown h1,
+.theme-dark .theme-doc-markdown h2,
+.theme-dark .theme-doc-markdown h3,
+.theme-dark .theme-doc-markdown h4,
+html[data-theme="dark"] .theme-doc-markdown h1,
+html[data-theme="dark"] .theme-doc-markdown h2,
+html[data-theme="dark"] .theme-doc-markdown h3,
+html[data-theme="dark"] .theme-doc-markdown h4,
+.theme-dark .post .markdown h1,
+html[data-theme="dark"] .post .markdown h1,
+.theme-dark .post .markdown h2,
+html[data-theme="dark"] .post .markdown h2 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Blog listing cards & docs cards: deep surface + readable title */
+.theme-dark .blog-list .card, html[data-theme="dark"] .blog-list .card,
+.theme-dark .postItem, html[data-theme="dark"] .postItem {
+  background: #061226 !important;
+  color: var(--dark-strong) !important;
+  box-shadow: 0 10px 32px rgba(2,6,23,0.45) !important;
+}
+
+/* Blog card title still purple for contrast on dark card */
+.theme-dark .blog-list .card .card__title,
+html[data-theme="dark"] .blog-list .card .card__title,
+.theme-dark .postItem .postItemContent h2,
+html[data-theme="dark"] .postItem .postItemContent h2 {
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Dark-mode code blocks */
+.theme-dark .theme-code-block pre,
+html[data-theme="dark"] .theme-code-block pre {
+  background: #071023 !important;
+  color: #e6eef8 !important;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Inline code & links in dark mode */
+.theme-dark code, html[data-theme="dark"] code {
+  background: rgba(255,255,255,0.03) !important;
+  color: #e6eef8 !important;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+.theme-dark a, html[data-theme="dark"] a {
+  color: var(--ifm-color-primary) !important;
+  text-decoration: underline !important;
+}
+
+/* Tables and blockquotes in dark */
+.theme-dark table, html[data-theme="dark"] table {
+  color: #e6eef8 !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+.theme-dark blockquote, html[data-theme="dark"] blockquote {
+  background: rgba(255,255,255,0.02) !important;
+  border-left: 3px solid rgba(255,255,255,0.06) !important;
+  color: var(--dark-strong) !important;
+}
+
+/* final safety: make small UI meta readable in dark */
+.theme-dark .card__meta, .theme-dark .postItem .postItemHeader,
+html[data-theme="dark"] .card__meta, html[data-theme="dark"] .postItem .postItemHeader {
+  color: rgba(255,255,255,0.72) !important;
+}
+/* ===========================
+   Strict: Get Started button text + link / navbar colors
+   Paste at the end of src/css/custom.css
+   =========================== */
+
+/* 1) Primary CTA (Get Started) text color:
+   - Light mode: black text on purple button background
+   - Dark mode: white text on purple button background
+   Use .primaryBtn (existing). If you want this only for the Get Started button,
+   add the class .getStartedBtn to that element and it will also be covered.
+*/
+.primaryBtn, .getStartedBtn {
+  /* ensure button background stays purple */
+  background: var(--ifm-color-primary) !important;
+  /* default (light) text color: black for high contrast on the light theme */
+  color: #000000 !important;
+}
+
+/* Dark mode: primary buttons show white text */
+.theme-dark .primaryBtn,
+html[data-theme="dark"] .primaryBtn,
+.theme-dark .getStartedBtn,
+html[data-theme="dark"] .getStartedBtn {
+  color: #ffffff !important;
+}
+
+/* 2) Navbar background in light theme: use #cfd4db (your requested color)
+   We only override navbar in light mode so dark mode gradient remains untouched.
+   We detect light-mode by absence of theme-dark or data-theme="dark".
+*/
+html:not([data-theme="dark"]) .navbar,
+:not(.theme-dark) .navbar {
+  background: #cfd4db !important;
+  /* maintain legibility for navbar links in light mode */
+  color: #0f1724 !important;
+}
+
+/* Ensure navbar links in light mode remain readable (dark text) */
+html:not([data-theme="dark"]) .navbar a,
+:not(.theme-dark) .navbar a {
+  color: #0f1724 !important;
+}
+
+/* 3) Link color on dark mode: use #cfd4db (pale) for navbar/footer and general links,
+   EXCLUDING any items explicitly marked with .readBlogBtn (your Read the Blog button).
+*/
+.theme-dark a:not(.readBlogBtn),
+html[data-theme="dark"] a:not(.readBlogBtn),
+.theme-dark .navbar a:not(.readBlogBtn),
+html[data-theme="dark"] .navbar a:not(.readBlogBtn),
+.theme-dark .footer a:not(.readBlogBtn),
+html[data-theme="dark"] .footer a:not(.readBlogBtn) {
+  color: #cfd4db !important;
+}
+
+/* Keep the readBlogBtn visually strong (example: white text on purple BG) — override
+   so it doesn't pick up the pale link color when on dark mode. Adjust as needed. */
+.readBlogBtn {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* 4) Safety: ensure heroText & other homepage cards respect theme overrides (no accidental light overrides) */
+.theme-dark .heroText, html[data-theme="dark"] .heroText {
+  color: #ffffff !important;
+}
+
+/* 5) Small touch: footer links in light mode — keep readable (dark) unless dark-mode rule applies */
+html:not([data-theme="dark"]) .footer a,
+:not(.theme-dark) .footer a {
+  color: #0f1724 !important;
+}
+
+/* 6) Ensure form inputs/search in dark mode remain readable */
+.theme-dark .heroSearch,
+html[data-theme="dark"] .heroSearch {
+  background: rgba(255,255,255,0.03) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* 7) If you added .getStartedBtn specifically, ensure it looks like a primary CTA in both modes */
+.getStartedBtn {
+  background: var(--ifm-color-primary) !important;
+  color: #000 !important; /* default light */
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* dark override for explicit getStartedBtn */
+.theme-dark .getStartedBtn, html[data-theme="dark"] .getStartedBtn {
+  color: #fff !important;
+}
+
+/* === FORCE LINK COLORS — append this at the end of src/css/custom.css ===
+   Light-mode link color: #7C3AED
+   Dark-mode link color:  #cfd4db
+   Exclude elements intentionally marked with .readBlogBtn (keeps its own style)
+*/
+
+:root {
+  --link-light: #7C3AED;
+  --link-dark: #cfd4db;
+}
+
+/* 1) Global links in LIGHT MODE (explicit selectors + !important to beat overrides) */
+html:not([data-theme="dark"]) a,
+html:not([data-theme="dark"]) a:visited,
+html:not([data-theme="dark"]) .navbar a,
+html:not([data-theme="dark"]) .footer a,
+html:not([data-theme="dark"]) .theme-doc-markdown a,
+html:not([data-theme="dark"]) .post .markdown a {
+  color: var(--link-light) !important;
+}
+
+/* 2) Global links in DARK MODE (except elements carrying .readBlogBtn) */
+.theme-dark a:not(.readBlogBtn),
+html[data-theme="dark"] a:not(.readBlogBtn),
+.theme-dark .navbar a:not(.readBlogBtn),
+html[data-theme="dark"] .navbar a:not(.readBlogBtn),
+.theme-dark .footer a:not(.readBlogBtn),
+html[data-theme="dark"] .footer a:not(.readBlogBtn),
+.theme-dark .theme-doc-markdown a:not(.readBlogBtn),
+html[data-theme="dark"] .theme-doc-markdown a:not(.readBlogBtn) {
+  color: var(--link-dark) !important;
+}
+
+/* 3) Hover/active/visited states — keep contrast */
+html:not([data-theme="dark"]) a:hover,
+html:not([data-theme="dark"]) a:focus {
+  color: var(--link-light) !important;
+  text-decoration: underline !important;
+}
+.theme-dark a:hover,
+html[data-theme="dark"] a:hover {
+  color: var(--link-dark) !important;
+  text-decoration: underline !important;
+}
+
+/* 4) Prevent primary CTA buttons and explicitly-styled buttons from being overridden */
+.primaryBtn, .primaryBtn * { color: inherit !important; }
+.getStartedBtn, .readBlogBtn { color: inherit !important; }
+
+/* 5) Safety: some components inject inline styles — force them to inherit link color too */
+html:not([data-theme="dark"]) [style*="color:"] a,
+.theme-dark [style*="color:"] a {
+  color: inherit !important;
+}
+
+/* 6) If any component uses SVG/text-fill for nav icons/links, make sure they are visible in dark */
+.theme-dark .navbar__items svg, html[data-theme="dark"] .navbar__items svg {
+  fill: var(--link-dark) !important;
+}
+
+/* End patch */
+

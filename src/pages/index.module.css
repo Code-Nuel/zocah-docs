@@ -1,0 +1,192 @@
+/* src/pages/index.module.css
+   Homepage: strict, polished hero and mobile stacking.
+   Desktop: two-column hero with right-side card.
+   Hero image rounded slightly (16px).
+*/
+
+.container {
+  font-family: var(--ifm-font-family-base);
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* HERO desktop: two-column */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+/* media wrapper to hold overlay reliably */
+.heroMedia {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 16px; /* increased rounding */
+  overflow: hidden;
+  box-shadow: 0 10px 34px rgba(2,6,23,0.10);
+}
+
+/* actual image fill with matching rounding */
+.heroMedia img.heroImage,
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center left;
+  border-radius: 16px;
+}
+
+/* subtle overlay to ensure any text above image stays visible */
+.heroMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6,10,15,0.06), rgba(6,10,15,0.10));
+  pointer-events: none;
+}
+
+/* right-side hero card (desktop) */
+.heroText {
+  background: #fff;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(2,6,23,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* titles (desktop card) */
+.title {
+  font-size: 2.6rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--ifm-color-primary);
+  line-height: 1.03;
+  font-weight: 800;
+}
+.subtitle {
+  font-size: 1.05rem;
+  margin: 0 0 1rem 0;
+  color: rgba(12,18,28,0.78);
+}
+
+/* search (desktop) */
+.searchRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.heroSearch {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,36,0.06);
+  font-size: 1rem;
+  outline: none;
+}
+.heroSearch:focus {
+  box-shadow: 0 6px 20px rgba(124,58,237,0.10);
+}
+.searchBtn {
+  padding: 0.6rem 0.9rem;
+  border-radius: 12px;
+  border: none;
+  background: var(--ifm-color-primary);
+  color: white;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+/* CTAs (desktop) */
+.ctaRow {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.primaryBtn {
+  background: var(--ifm-color-primary);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.secondaryBtn {
+  border: 1px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* features desktop */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+.feature {
+  background: var(--ifm-color-emphasis-0, #fff);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+
+/* ----------------
+   MOBILE / SMALL SCREENS: strict & polished
+   ---------------- */
+@media (max-width: 880px) {
+  .container { padding: 1.25rem; }
+
+  .hero { grid-template-columns: 1fr; gap: 1rem; align-items: start; margin-bottom: 1.5rem; }
+
+  /* make image slightly taller for mobile crop */
+  .heroMedia { height: 260px; }
+  .heroMedia img, .heroImage { object-position: 20% center; }
+
+  /* floating dark card overlapping image for guaranteed contrast */
+  .heroText {
+    margin-top: -72px;
+    background: linear-gradient(180deg, rgba(10,14,20,0.96), rgba(10,14,20,0.92));
+    color: #fff;
+    box-shadow: 0 20px 44px rgba(2,6,23,0.18);
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .heroText .title { color: #fff; font-size: 1.9rem; margin-bottom: 6px; }
+  .heroText .subtitle { color: rgba(255,255,255,0.92); font-size: 1rem; margin-bottom: 10px; }
+
+  /* stacked search & CTAs */
+  .searchRow { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:0.6rem; }
+  .heroSearch { width:100%; padding:0.85rem 1rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); color:#fff; }
+  .heroSearch::placeholder { color: rgba(255,255,255,0.7); }
+  .searchBtn { width:100%; padding:0.85rem; border-radius:10px; font-weight:700; }
+
+  .ctaRow { display:flex; flex-direction:column; gap:0.6rem; margin-top:0.6rem; }
+  .primaryBtn, .secondaryBtn { display:block; width:100%; padding:0.9rem; border-radius:10px; font-weight:800; text-align:center; }
+  .primaryBtn { background:var(--ifm-color-primary); color:#fff; }
+  .secondaryBtn { background:transparent; border:1px solid rgba(255,255,255,0.16); color:#fff; }
+
+  .features { grid-template-columns: 1fr; gap:12px; margin-top:1rem; }
+  .feature { padding:1rem; border-radius:10px; background:#fff; color:var(--content-text-color); box-shadow: 0 8px 22px rgba(2,6,23,0.08); }
+
+  /* ensure hero card links still readable */
+  .heroText a { color: #EDEBFF; text-decoration: underline; }
+}
+
+/* very small */
+@media (max-width: 420px) {
+  .heroMedia { height: 220px; }
+  .heroText { margin-top: -60px; padding:12px; }
+  .heroText .title { font-size:1.6rem; }
+}
+
+/* housekeeping */
+* { box-sizing: border-box; }
