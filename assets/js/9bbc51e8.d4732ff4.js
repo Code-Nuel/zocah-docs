@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkzocah_docs=self.webpackChunkzocah_docs||[]).push([[190],{3746:o=>{o.exports=JSON.parse('{"metadata":{"permalink":"/zocah-docs/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":3,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);

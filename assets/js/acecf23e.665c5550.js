@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkzocah_docs=self.webpackChunkzocah_docs||[]).push([[903],{1912:o=>{o.exports=JSON.parse('{"blogBasePath":"/zocah-docs/blog","blogTitle":"Blog","authorsListPath":"/zocah-docs/blog/authors"}')}}]);

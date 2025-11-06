@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Zocah Docs Blog</title>
+        <link>https://zocah.github.io/zocah-docs/blog</link>
+        <description>Zocah Docs Blog</description>
+        <lastBuildDate>Fri, 12 Sep 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome]]></title>
+            <link>https://zocah.github.io/zocah-docs/blog/welcome</link>
+            <guid>https://zocah.github.io/zocah-docs/blog/welcome</guid>
+            <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Here are a few tips you might find useful.]]></description>
+            <content:encoded><![CDATA[<p>Here are a few tips you might find useful.</p>
+<p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p>
+<p>Regular blog authors can be added to <code>authors.yml</code>.</p>
+<p>The blog post date can be extracted from filenames, such as:</p>
+<ul>
+<li class=""><code>2019-05-30-welcome.md</code></li>
+<li class=""><code>2019-05-30-welcome/index.md</code></li>
+</ul>
+<p>A blog post folder can be convenient to co-locate blog post images:</p>
+<p><img decoding="async" loading="lazy" alt="Docusaurus Plushie" src="https://zocah.github.io/zocah-docs/assets/images/docusaurus-plushie-banner-a60f7593abca1e3eef26a9afa244e4fb.jpeg" width="1500" height="500" class="img_ev3q"></p>
+<p>The blog supports tags as well!</p>
+<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
+            <category>zocah</category>
+            <category>devops</category>
+        </item>
+        <item>
+            <title><![CDATA[How Zocah Ends Your Nightmare With One-Time Deploys]]></title>
+            <link>https://zocah.github.io/zocah-docs/blog/zocah-one-time-deploys</link>
+            <guid>https://zocah.github.io/zocah-docs/blog/zocah-one-time-deploys</guid>
+            <pubDate>Wed, 10 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Developers should build features — not wrestle with package managers, CI scripts, and cloud config. Zocah reimagines project setup and operations by turning dependency management and DevOps into a service. Below we dive deeper into the problem, the technical approach Zocah uses, and a concrete developer story showing the time savings.]]></description>
+            <content:encoded><![CDATA[<p>Developers should build features — not wrestle with package managers, CI scripts, and cloud config. Zocah reimagines project setup and operations by turning dependency management and DevOps into a service. Below we dive deeper into the problem, the technical approach Zocah uses, and a concrete developer story showing the time savings.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-root-problem-friction-at-every-layer">The root problem: friction at every layer<a href="https://zocah.github.io/zocah-docs/blog/zocah-one-time-deploys#the-root-problem-friction-at-every-layer" class="hash-link" aria-label="Direct link to The root problem: friction at every layer" title="Direct link to The root problem: friction at every layer" translate="no">​</a></h2>
+<p>The modern stack looks simple on paper: install, code, test, deploy. In practice, that pipeline breaks at multiple touchpoints:</p>
+<ul>
+<li class=""><strong>Heterogeneous environments</strong> — differences between developer machines, CI runners, and production cause subtle bugs.</li>
+<li class=""><strong>Hidden transitive conflicts</strong> — transitive dependency upgrades can break builds unexpectedly.</li>
+<li class=""><strong>Flaky pipelines</strong> — CI scripts bit-rot, causing nights of debugging.</li>
+<li class=""><strong>Operational overhead</strong> — scaling, monitoring, and incident response require specialized knowledge and headcount.</li>
+</ul>
+<p>For small teams this often means hiring ops engineers earlier than the product roadmap needs.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="zocahs-approach-technical-summary">Zocah’s approach (technical summary)<a href="https://zocah.github.io/zocah-docs/blog/zocah-one-time-deploys#zocahs-approach-technical-summary" class="hash-link" aria-label="Direct link to Zocah’s approach (technical summary)" title="Direct link to Zocah’s approach (technical summary)" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>Project introspection</strong> — Zocah inspects your repository or template and creates a minimal reproducible manifest tuned for the chosen runtime (Node, Python, Java, etc.).</li>
+<li class=""><strong>Deterministic manifests</strong> — generated manifests prefer pinned, compatible versions (with safe ranges where appropriate) and include metadata used by Zocah’s build agents.</li>
+<li class=""><strong>Immutable build sandboxes</strong> — builds occur in containerized, versioned sandboxes so “works on my machine” becomes a non-issue.</li>
+<li class=""><strong>Programmable pipelines</strong> — deployments are triggered via the API; strategies (rolling, canary, blue-green) are first-class options.</li>
+<li class=""><strong>Observability built-in</strong> — logs, metrics, and build traces are retained and exposed over the API for easy debugging.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="concrete-example-shipping-a-prototype-faster">Concrete example: shipping a prototype faster<a href="https://zocah.github.io/zocah-docs/blog/zocah-one-time-deploys#concrete-example-shipping-a-prototype-faster" class="hash-link" aria-label="Direct link to Concrete example: shipping a prototype faster" title="Direct link to Concrete example: shipping a prototype faster" translate="no">​</a></h2>
+<p>A solo founder wants to ship an MVP — a Flask API + React front end. Previously they would:</p>
+<ul>
+<li class="">Spend a day installing Python, Node, Docker, and configuring the pipeline.</li>
+<li class="">Spend another day wrestling an elusive dependency conflict.</li>
+</ul>
+<p>With Zocah:</p>
+<ul>
+<li class="">Create a project via the dashboard or API.</li>
+<li class="">Zocah generates <code>pyproject.toml</code> and <code>package.json</code> with compatible dependency sets.</li>
+<li class="">Trigger a build and deploy — the site is live and monitored within an hour.</li>
+</ul>
+<p>This reduction from days to hours lowers the cost of iteration and increases the number of experiments a team can run.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="closing-thoughts">Closing thoughts<a href="https://zocah.github.io/zocah-docs/blog/zocah-one-time-deploys#closing-thoughts" class="hash-link" aria-label="Direct link to Closing thoughts" title="Direct link to Closing thoughts" translate="no">​</a></h2>
+<p>Dependency management and DevOps tooling should enable developers, not slow them down. Zocah treats DevOps as a product: predictable, programmable, and designed to make shipping faster and safer. We’re excited to share more tutorials, templates, and SDK samples in the coming weeks — stay tuned.</p>]]></content:encoded>
+            <category>zocah</category>
+            <category>devops</category>
+            <category>productivity</category>
+        </item>
+        <item>
+            <title><![CDATA[Shipping Faster With Zocah]]></title>
+            <link>https://zocah.github.io/zocah-docs/blog/ship-faster-with-zocah</link>
+            <guid>https://zocah.github.io/zocah-docs/blog/ship-faster-with-zocah</guid>
+            <pubDate>Tue, 02 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[For years, shipping software has meant juggling two worlds: product development and infrastructure management. Engineers write features while DevOps teams wrestle with builds, CI/CD, deployments, scaling, and monitoring. That split creates delays and misconfigurations and forces teams to hire operations staff early — often before product/market fit.]]></description>
+            <content:encoded><![CDATA[<p>For years, shipping software has meant juggling two worlds: product development and infrastructure management. Engineers write features while DevOps teams wrestle with builds, CI/CD, deployments, scaling, and monitoring. That split creates delays and misconfigurations and forces teams to hire operations staff early — often before product/market fit.</p>
+<p>Zocah changes that. We let developers create and run projects <strong>without installing dependencies</strong></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="from-days-to-minutes-a-developer-story">From days to minutes: a developer story<a href="https://zocah.github.io/zocah-docs/blog/ship-faster-with-zocah#from-days-to-minutes-a-developer-story" class="hash-link" aria-label="Direct link to From days to minutes: a developer story" title="Direct link to From days to minutes: a developer story" translate="no">​</a></h2>
+<p>Consider a small product team building a Next.js app for payments. Before Zocah:</p>
+<ul>
+<li class="">Onboarding a new developer required installing Node, matching a package manager version, Docker, local databases, and CLI tools.</li>
+<li class="">The CI pipeline differed slightly from local dev and introduced flaky failures.</li>
+<li class="">Debugging a failed deploy sometimes took hours because the build environment differed from developer machines.</li>
+</ul>
+<p>With Zocah, the same team can:</p>
+<ol>
+<li class="">Create a new project with a single API call or via the web UI.</li>
+<li class="">Let Zocah infer and generate the exact dependency manifest for the target runtime.</li>
+<li class="">Trigger a managed build + deploy pipeline with a single click — the system monitors builds and surfaces clear actionable logs.</li>
+</ol>
+<p>The difference? Fewer environment-related bugs, fewer interrupted sprints, and faster customer feedback loops.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-zocah-automates-high-level">What Zocah automates (high level)<a href="https://zocah.github.io/zocah-docs/blog/ship-faster-with-zocah#what-zocah-automates-high-level" class="hash-link" aria-label="Direct link to What Zocah automates (high level)" title="Direct link to What Zocah automates (high level)" translate="no">​</a></h2>
+<ul>
+<li class=""><strong>Dependency inference</strong> — Zocah inspects repository contents (or your starter template) and generates package manifests (<code>package.json</code>, <code>requirements.txt</code>, <code>pyproject.toml</code>) tuned for a reproducible build.</li>
+<li class=""><strong>Managed builds</strong> — reproducible, cloud-hosted build environments that mirror production.</li>
+<li class=""><strong>One-click deploys and strategies</strong> — rolling, canary, blue-green — all orchestrated and observable from the API.</li>
+<li class=""><strong>Logs &amp; observability</strong> — structured logs, build traces, and health checks available via API or dashboard.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="who-benefits-most">Who benefits most<a href="https://zocah.github.io/zocah-docs/blog/ship-faster-with-zocah#who-benefits-most" class="hash-link" aria-label="Direct link to Who benefits most" title="Direct link to Who benefits most" translate="no">​</a></h2>
+<ul>
+<li class="">Startups and SMBs that don’t want early DevOps hires.</li>
+<li class="">Product teams that prefer shipping features over configuring CI pipelines.</li>
+<li class="">Agencies and freelancers that need repeatable, reproducible project scaffolds.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-steps">Next steps<a href="https://zocah.github.io/zocah-docs/blog/ship-faster-with-zocah#next-steps" class="hash-link" aria-label="Direct link to Next steps" title="Direct link to Next steps" translate="no">​</a></h2>
+<p>If you want to try Zocah with an existing repo or starter template, check the API reference in the docs and try the quickstart SDK samples. We’ll be publishing more tutorial videos and templates soon — subscribe to the blog to get them first.</p>]]></content:encoded>
+            <category>zocah</category>
+            <category>devops</category>
+        </item>
+    </channel>
+</rss>
