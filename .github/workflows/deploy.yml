@@ -5,19 +5,25 @@ on:
     branches:
       - main
 
+# Give this workflow explicit write access to repo contents (required to push gh-pages)
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (no credentials persisted)
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false  # IMPORTANT: prevents checkout from using GITHUB_TOKEN for later push steps
 
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20'       # use Node 20 (required by Docusaurus 3.9.x+)
+          node-version: '20'
 
-      - name: Install dependencies (safe)
+      - name: Install dependencies
         run: npm install --no-audit --no-fund
 
       - name: Build site
@@ -28,3 +34,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          publish_branch: gh-pages
