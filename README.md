@@ -1,6 +1,6 @@
 # Website
 
-yarn
+https://code-nuel.github.io/zocah-docs/
 
 ## Installation
 
